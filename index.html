@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+        #all {
+          width:auto;
+          height:auto;
+          /* background:silver; */
+        }
+
+
+        #image01{
+          display: block;
+          height:50%;
+          width:50%;
+          margin: auto;
+        }
+        .down{
+          display: block;
+          height : 50%;
+        }
+
+
+
+        .slider{
+          width: 200px;
+        }
+         .table{
+          width: 1200px;
+        } 
+        .item_image{
+          width: 250px;
+        }
+        .item_count{
+          width: 100px;
+        }
+        .slider_zone{
+          width: 250px;
+        }
+
+
+
+        #slider1 .ui-slider-handle {
+         margin-top:2px;
+         background:#0088ff;       /* 色 */
+         /*border:3px solid #000088; /* border */
+        }
+
+          #slider2 .ui-slider-handle {
+         margin-top:2px;
+         background:#0088ff;       /* 色 */
+         /*border:3px solid #000088; /* border */
+        }
+          #slider3 .ui-slider-handle {
+         margin-top:2px;
+         background:#0088ff;       /* 色 */
+         /*border:3px solid #000088; /* border */
+        }
+          #slider4 .ui-slider-handle {
+         margin-top:2px;
+         background:#0088ff;       /* 色 */
+         /*border:3px solid #000088; /* border */
+        }
+
+    </style>
+    
+    <div id="all">
+    
+    <div id="intro">
+        <div>あなたは合計で22個のアイテムを持っていて、それぞれに得点が割り振られています</div>    
+        <div>あなたはこれから、それぞれのアイテムを画像の女の子にどれだけ渡すかを決めます。</div><div>スライダーバーを動かして渡す個数を全て決めたら[決定]ボタンを押した後、[→]ボタンからアンケートを続けてください。</div><div>一度[決定]ボタンを押すとスライダーバーの操作ができなくなります。</div>
+        
+        <div>&nbsp;</div>
+        
+        <div>&nbsp;</div>
+      
+        
+        
+        <input name="F_EMO" type="hidden" value=1> 
+        <input name="F_BLI" type="hidden" value=1>
+        <input name="Limit" type="hidden" value=31>
+        <input name="Array" type="hidden" value=0>
+    
+        
+        <input name="Shuffle_Item1" type="hidden" value=100>
+        <input name="Shuffle_Item2" type="hidden" value=80>
+        <input name="Shuffle_Item3" type="hidden" value=60>
+        <input name="Shuffle_Item4" type="hidden" value=40>
+    </div>
+      
+      
+      
+    <img id="image01"  src="">
+    
+    
+    
+    <div class="down" align="center"  >
+        
+        <table class="table" table="" border="1"    style="border-collapse: collapse">
+        <tbody><tr>
+            <th class="item_image"> </th>
+            <th align="center" class="item_count">あなたの点数</th>
+            <th class="slider_zone"></th>
+            <th align="center" class="item_count">相手の点数</th>
+            <th class="item_image"></th>
+        </tr>
+       
+        <tr>
+            <td id="myitem1"></td>
+
+            <td align="center"><span class="value" id="my_item1_value">7個×4点</span></td>
+            <td align="center"><div class="slider" id="slider1">&nbsp;</div></td>
+            <td align="center"><span class="value" id="item1_value">0個×？点</span></td>
+
+            <td id="opitem1"></td>
+        </tr>
+       
+        <tr>
+            <td id="myitem2"></td>
+            <td align="center"><span class="value" id="my_item2_value">5個×3点</span></td>
+            <td align="center"><div class="slider" id="slider2">&nbsp;</div></td>
+            <td align="center"><span class="value" id="item2_value">0個×？点</span></td>
+            <td id="opitem2"></td>
+        </tr>
+       
+        <tr>
+            <td id="myitem3"></td>
+            <td align="center"><span class="value" id="my_item3_value">5個×2点</span></td>
+            <td align="center"><div class="slider" id="slider3">&nbsp;</div></td>
+            <td align="center"><span class="value" id="item3_value">0個×？点</span></td>
+            <td id="opitem3"></td>
+            
+        </tr>
+       
+        <tr>
+            <td id="myitem4"></td>
+            <td align="center"><span class="value" id="my_item4_value">5個×1点</span></td>
+            <td align="center"><div class="slider" id="slider4">&nbsp;</div></td>
+            <td align="center"><span class="value" id="item4_value">0個×？点</span></td>
+            <td id="opitem4"></td>
+        </tr>  
+       
+        <tr>
+            <td>合計得点</td>
+            <td align="center"><span class="value" id="my_total_point">58</span></td>
+            <td align="center"></td>
+            <td align="center"><span class="value" id="op_total_point">？</span></td>
+            <td></td>
+        </tr>  
+        </tbody></table>
+        <br>
+        <div id="selection"><button id="select" name="set" type="button" value="OK" style="width:400px;font-size:30px;">決定<br></button></div>
+      
+      
+       
+       
+         
+       
+    </div>
+    
+    
+    
+    </div>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jcanvas.min.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
