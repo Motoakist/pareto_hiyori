@@ -4,168 +4,325 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>pareto_hiyori</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.8.20/themes/base/jquery-ui.css" type="text/css" media="all" />
+
+    <script type="text/javascript" src="js/createJS.js" x-content-type-options="nosniff"></script>
+    <!-- <script type="text/javascript" src="https://raw.githubusercontent.com/caleb531/jcanvas/v21.0.1/dist/min/jcanvas.min.js" x-content-type-options="nosniff"></script> -->
+    <!-- <script type="text/javascript" src="js/main.js" x-content-type-options="nosniff"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/apng-canvas/2.1.1/apng-canvas.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script><script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" />
+<link href="https://code.jquery.com/ui/1.8.20/themes/base/jquery-ui.css" media="all" rel="stylesheet" type="text/css" /><script> var flag_answer = 0; </script>
+
+
+
 </head>
-<body>
-    <style>
-        #all {
-          width:auto;
-          height:auto;
-          /* background:silver; */
-        }
+<body onload="draw()">
 
-
-        #image01{
-          display: block;
-          height:50%;
-          width:50%;
-          margin: auto;
-        }
-        .down{
-          display: block;
-          height : 50%;
-        }
-
-
-
-        .slider{
-          width: 200px;
-        }
-         .table{
-          width: 1200px;
-        } 
-        .item_image{
-          width: 250px;
-        }
-        .item_count{
-          width: 100px;
-        }
-        .slider_zone{
-          width: 250px;
-        }
-
-
-
-        #slider1 .ui-slider-handle {
-         margin-top:2px;
-         background:#0088ff;       /* 色 */
-         /*border:3px solid #000088; /* border */
-        }
-
-          #slider2 .ui-slider-handle {
-         margin-top:2px;
-         background:#0088ff;       /* 色 */
-         /*border:3px solid #000088; /* border */
-        }
-          #slider3 .ui-slider-handle {
-         margin-top:2px;
-         background:#0088ff;       /* 色 */
-         /*border:3px solid #000088; /* border */
-        }
-          #slider4 .ui-slider-handle {
-         margin-top:2px;
-         background:#0088ff;       /* 色 */
-         /*border:3px solid #000088; /* border */
-        }
-
-    </style>
-    
     <div id="all">
-    
-    <div id="intro">
-        
-        <div>&nbsp;</div>
-        
-        <div>&nbsp;</div>
-      
-        
-        
-        <input name="F_EMO" type="hidden" value=1> 
-        <input name="F_BLI" type="hidden" value=1>
-        <input name="Limit" type="hidden" value=31>
-        <input name="Array" type="hidden" value=0>
-    
-        
-        <input name="Shuffle_Item1" type="hidden" value=100>
-        <input name="Shuffle_Item2" type="hidden" value=80>
-        <input name="Shuffle_Item3" type="hidden" value=60>
-        <input name="Shuffle_Item4" type="hidden" value=40>
-    </div>
-      
-      
-      
-    <img id="image01"  src="">
-    
-    
-    
-    <div class="down" align="center"  >
-        
-        <table class="table" table="" border="1"    style="border-collapse: collapse">
-        <tbody><tr>
-            <th class="item_image"> </th>
-            <th align="center" class="item_count">あなたの点数</th>
-            <th class="slider_zone"></th>
-            <th align="center" class="item_count">相手の点数</th>
-            <th class="item_image"></th>
-        </tr>
-       
-        <tr>
-            <td id="myitem1"></td>
+        <div id="intro">
+            <input name="F_EMO" type="hidden" value="1"> 
+            <input name="F_BLI" type="hidden" value="1">
+            <input name="Limit" type="hidden" value="12">
+            <input name="Array" type="hidden" value="0">
 
-            <td align="center"><span class="value" id="my_item1_value">7個×4点</span></td>
-            <td align="center"><div class="slider" id="slider1">&nbsp;</div></td>
-            <td align="center"><span class="value" id="item1_value">0個×？点</span></td>
+            <input name="slider1_init" type="hidden" value="0">
+            <input name="slider2_init" type="hidden" value="0">
+            <input name="slider3_init" type="hidden" value="0">
+            <input name="slider4_init" type="hidden" value="0">
+        
 
-            <td id="opitem1"></td>
-        </tr>
-       
-        <tr>
-            <td id="myitem2"></td>
-            <td align="center"><span class="value" id="my_item2_value">5個×3点</span></td>
-            <td align="center"><div class="slider" id="slider2">&nbsp;</div></td>
-            <td align="center"><span class="value" id="item2_value">0個×？点</span></td>
-            <td id="opitem2"></td>
-        </tr>
-       
-        <tr>
-            <td id="myitem3"></td>
-            <td align="center"><span class="value" id="my_item3_value">5個×2点</span></td>
-            <td align="center"><div class="slider" id="slider3">&nbsp;</div></td>
-            <td align="center"><span class="value" id="item3_value">0個×？点</span></td>
-            <td id="opitem3"></td>
+            <!-- <input name="item1" type="hidden" value="watch">
+            <input name="item2" type="hidden" value="bracelet">
+            <input name="item3" type="hidden" value="earrings">
+            <input name="item4" type="hidden" value="necklace"> -->
+            <input name="item1" type="hidden" value="pudding">
+            <input name="item2" type="hidden" value="mochi">
+            <input name="item3" type="hidden" value="shortcake">
+            <input name="item4" type="hidden" value="eclair">
+        </div>
+
+        <div class = "pareto_hiyori" id = "main_area0" style="height:500px">
+            <div class="canvas-wrapper left-colum" style="width:50%">
+                <!-- <canvas id="canvas"></canvas>-->
+                <!-- <canvas id="MyCanvas1" ></canvas> -->
+                <canvas id="MyCanvas1" width="810" height="510"></canvas>
+                
+                
+                <canvas id="MyCanvas3" width="840" height="540"></canvas>
+                <!-- <canvas id="MyCanvasHeat" width="840" height="540"></canvas> -->
+                <canvas id="MyCanvas2" width="840" height="540"></canvas>
+                <canvas id="MyCanvasLabel" width="840" height="540"></canvas>
             
-        </tr>
-       
-        <tr>
-            <td id="myitem4"></td>
-            <td align="center"><span class="value" id="my_item4_value">5個×1点</span></td>
-            <td align="center"><div class="slider" id="slider4">&nbsp;</div></td>
-            <td align="center"><span class="value" id="item4_value">0個×？点</span></td>
-            <td id="opitem4"></td>
-        </tr>  
-       
-        <tr>
-            <td>合計得点</td>
-            <td align="center"><span class="value" id="my_total_point">58</span></td>
-            <td align="center"></td>
-            <td align="center"><span class="value" id="op_total_point">？</span></td>
-            <td></td>
-        </tr>  
-        </tbody></table>
-        <br>
-        <div id="selection"><button id="select" name="set" type="button" value="OK" style="width:400px;font-size:30px;">決定<br></button></div>
+            </div>
+            <div class = "right-colum">
+                <div class = "left-colum-mini">
+                    <!-- <img id="image01" src=""> -->
+                    <canvas id="myCanvas" class="border border-5 rounded-3 border-info"></canvas>
+                </div>
+                <div class = "right-colum-mini">
+                    <img src="img/Live2D logo square.png" height="100" width="100" alt="Live2DLogo" align="right" >
+                </div>
+            </div>
+        </div>
       
-      
-       
-       
+        <div class="down" align="center">
+            <table class="table" table="" border="1" style="border-collapse: collapse">
+                <tbody>
+                    <tr>
+                        <th class="item_image">Your Item</th>
+                        <th align="center" class="item_count">Your Point</th>
+                        <th class="slider_zone">Division</th>
+                        <th align="center" class="item_count">Opponent Point</th>
+                        <th class="item_image">Opponent Item</th>
+                    </tr>
+
+                    <tr>
+                        <td id="myitem1"></td>
+
+                        <td align="center"><span class="value" id="my_item1_value">7×4point</span></td>
+                        <td align="center"><div class="slider" id="slider1">&nbsp;</div></td>
+                        <td align="center"><span class="value" id="item1_value">0×4point</span></td>
+
+                        <td id="opitem1"></td>
+                    </tr>
+                    
+            
+                    <tr>
+                        <td id="myitem2"></td>
+                        <td align="center"><span class="value" id="my_item2_value">5×3point</span></td>
+                        <td align="center"><div class="slider" id="slider2">&nbsp;</div></td>
+                        <td align="center"><span class="value" id="item2_value">0×1point</span></td>
+                        <td id="opitem2"></td>
+                    </tr>
+            
+                    <tr>
+                        <td id="myitem3"></td>
+                        <td align="center"><span class="value" id="my_item3_value">5×2point</span></td>
+                        <td align="center"><div class="slider" id="slider3">&nbsp;</div></td>
+                        <td align="center"><span class="value" id="item3_value">0×0point</span></td>
+                        <td id="opitem3"></td>
+                        
+                    </tr>
+            
+                    <tr>
+                        <td id="myitem4"></td>
+                        <td align="center"><span class="value" id="my_item4_value">5×1point</span></td>
+                        <td align="center"><div class="slider" id="slider4">&nbsp;</div></td>
+                        <td align="center"><span class="value" id="item4_value">0×3point</span></td>
+                        <td id="opitem4"></td>
+                    </tr>  
+            
+                    <tr>
+                        <td>Total Point</td>
+                        <td align="center"><span class="value" id="my_total_point">58</span></td>
+                        <td align="center"></td>
+                        <td align="center"><span class="value" id="op_total_point">0</span></td>
+                        <td></td>
+                    </tr>  
+                </tbody>
+            </table>
+            <br>
+            <!-- <br>&nbsp; -->
+
+
+
+            <div class = "">
+                <table class="table_point" table="" border="1" style="border-collapse: collapse">
+                    <tbody>
+                        <tr>
+                            <th align="center" class="my_item_point">Limit</th>
+                            <th class="slider_zone">Limit</th>
+                        </tr>
+
+                        <tr>
+                            <td align="center"><span class="value" id="limit_point">35point</span></td>
+                            <td align="center"><div class="slider_limit" id="slider_limit">&nbsp;</div></td>
+                        </tr>
+                  
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class = "">
+                <table class="table_point" table="" border="1" style="border-collapse: collapse">
+                    <tbody>
+                        <tr>
+                            <th align="center" class="my_item_point">Scaling</th>
+                            <th class="slider_zone">Scaling Value</th>
+                        </tr>
+
+                        <tr>
+                            <td align="center"><span class="value" id="scaling_value">8</span></td>
+                            <td align="center"><div class="scaling" id="scaling_slider">&nbsp;</div></td>
+                        </tr>
+                  
+                    </tbody>
+                </table>
+            </div>
+
+
+
+
+            <div class = "left-colum">
+                <table class="table_point" table="" border="1" style="border-collapse: collapse">
+                    <tbody>
+                        <tr>
+                            <th align="center" class="my_item_point">Your Item Point</th>
+                            <th class="slider_zone">Point(-4 ~ 4point)</th>
+                        </tr>
+
+                        <tr>
+                            <td align="center"><span id = "myitem_point1"></span><span class="value" id="my_item1_point_table">4point</span></td>
+                            <td align="center"><div class="slider" id="slider_mypoint1">&nbsp;</div></td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="center"><span id = "myitem_point2"></span><span class="value" id="my_item2_point_table">3point</span></td>
+                            <td align="center"><div class="slider" id="slider_mypoint2">&nbsp;</div></td>
+                        </tr>
+                
+                        <tr>
+                            <td align="center"><span id = "myitem_point3"></span><span class="value" id="my_item3_point_table">2point</span></td>
+                            <td align="center"><div class="slider" id="slider_mypoint3">&nbsp;</div></td>
+                        </tr>
+                
+                        <tr>
+                            <td align="center"><span id = "myitem_point4"></span><span class="value" id="my_item4_point_table">1point</span></td>
+                            <td align="center"><div class="slider" id="slider_mypoint4">&nbsp;</div></td>
+                        </tr>  
+                
+                        <tr>
+                            <td></td>
+                            
+                            <td align="center"><button id="btn">Apply</button></td>
+                        </tr>  
+                    </tbody>
+                </table>
+            </div>
+
+            <div class = "right-colum">
+                <table class="table_point" table="" border="1" style="border-collapse: collapse">
+                    <tbody>
+                        <tr>
+                            <th align="center" class="op_item_point">Opponent Item Point</th>
+                            <th class="item_image">Point(-4 ~ 4point)</th>
+                        </tr>
+                        <tr>
+                            <td align="center"><span id = "opitem_point1"></span><span class="value" id="op_item1_point_table">4point</span></td>
+                            <td align="center"><div class="slider" id="slider_oppoint1">&nbsp;</div></td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="center"><span id = "opitem_point2"></span><span class="value" id="op_item2_point_table">1point</span></td>
+                            <td align="center"><div class="slider" id="slider_oppoint2">&nbsp;</div></td>
+                        </tr>
+                
+                        <tr>
+                            <td align="center"><span id = "opitem_point3"></span><span class="value" id="op_item3_point_table">0point</span></td>
+                            <td align="center"><div class="slider" id="slider_oppoint3">&nbsp;</div></td>
+                        </tr>
+                
+                        <tr>
+                            <td align="center"><span id = "opitem_point4"></span><span class="value" id="op_item4_point_table">3point</span></td>
+                            <td align="center"><div class="slider" id="slider_oppoint4">&nbsp;</div></td>
+                        </tr>  
+                
+                        <tr>
+                        
+                            <td></td>
+                            <td align="center"><button id="btn2" type="submit">Apply</button></td>
+                        </tr>  
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- <br>&nbsp;
+            <br>&nbsp; -->
+
+            <div class = "left-colum">
+                <table class="table_point" table="" border="1" style="border-collapse: collapse">
+                    <tbody>
+                        <tr>
+                            <th align="center" class="op_item_point">Number of Items</th>
+                            <th class="item_image">Number(0 ~ 10)</th>
+                        </tr>
+                        <tr>
+                            <td align="center"><span class="value" id="item1_image_table">7</span></td>
+                            <td align="center"><div class="slider" id="slider_item1_number">&nbsp;</div></td>
+                        </tr>
+                        
+                        <tr>
+                            <td align="center"><span class="value" id="item2_image_table">5</span></td>
+                            <td align="center"><div class="slider" id="slider_item2_number">&nbsp;</div></td>
+                        </tr>
+                
+                        <tr>
+                            <td align="center"><span class="value" id="item3_image_table">5</span></td>
+                            <td align="center"><div class="slider" id="slider_item3_number">&nbsp;</div></td>
+                        </tr>
+                
+                        <tr>
+                            <td align="center"><span class="value" id="item4_image_table">5</span></td>
+                            <td align="center"><div class="slider" id="slider_item4_number">&nbsp;</div></td>
+                        </tr>  
+                
+                        <tr>
+                        
+                            <td></td>
+                            <td align="center"><button id="btn3" type="submit">Apply</button></td>
+                        </tr>  
+                    </tbody>
+                </table>
+            </div>
          
-       
+
+            <!-- <label for="svo">SVOを選択してください</label>
+            <select id="svo" >
+            <option value="individualism" selected>Individualism</option>
+            <option value="altruism">Altruism</option>
+            <option value="equalism">Equalism</option>
+            <option value="sadism">Sadism</option>
+            <option value="Competitive">Competitive</option>
+            <option value="Cooperative">Cooperative</option>
+            </select> -->
+            <div class = "left-colum">
+                <canvas id="myCanvasBottom" class="myCanvas" width="400" height="300"></canvas>
+                <button id="btn4" type="submit">Apply</button>
+            </div>
+            
+            <!-- <div id="wapper">
+                <h2>Change SVO</h2>
+                <div class="style1">
+                <select class="select" id = "svo">
+                    <option value="individualism" selected>Individualism</option>
+                    <option value="altruism" >Altruism</option>
+                    <option value="sadism" >Sadism</option>
+                    <option value="masochism" >Masochism</option>
+                    <option value="cooperation" >Cooperation</option>
+                    <option value="competition" >Competition</option>
+                    <option value="sadomasochism" >Sadomasochism</option>
+                    <option value="martyrdom" >Martyrdom</option>
+                </select>
+                </div>
+            </div>
+            <div id="event-change"></div> -->
+            <!-- <button id="btn4" type="submit">change</button> -->
+
+            <!-- <div id="selection"><button id="select" name="set" type="button" value="OK" style="width:400px;font-size:30px;">決定<br></button></div> -->
+        </div>
     </div>
+    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br>
     
-    
-    
-    </div>
-    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <!-- <script type="text/javascript" src="js/jquery.min.js"></script> -->
     <script type="text/javascript" src="js/jcanvas.min.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
 </body>
